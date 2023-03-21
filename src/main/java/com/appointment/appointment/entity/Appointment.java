@@ -1,15 +1,36 @@
-package com.appointment.appointment.dto;
+package com.appointment.appointment.entity;
 
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-public class AppointmentDTO {
-
+@Entity
+@Table(name="appointment")
+public class Appointment implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
+
+    @Column(name = "doctor_id")
     private Long doctorId;
+
+    @Column(name = "applicant_id")
     private Long applicantId;
+
+    @Column(name = "start_date")
     private LocalDate start;
+
+    @Column(name = "end_date")
     private LocalDate end;
+
+    @Column(name = "created_at")
     private LocalDate createdAt;
+
+
+    @Column(name = "updated_at")
     private LocalDate updatedAt;
 
 
@@ -42,7 +63,7 @@ public class AppointmentDTO {
     }
 
     public void setStart(LocalDate start) {
-        start = start;
+        this.start = start;
     }
 
     public LocalDate getEnd() {
